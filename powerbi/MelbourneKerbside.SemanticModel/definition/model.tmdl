@@ -1,0 +1,16 @@
+model Model
+	culture: en-AU
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-AU
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder","GetFile","Kerb","Hours","HourOfDay","DayType"]
+
+ref table Kerb
+ref table Hours
+ref table HourOfDay
+ref table DayType
+
+ref cultureInfo en-AU

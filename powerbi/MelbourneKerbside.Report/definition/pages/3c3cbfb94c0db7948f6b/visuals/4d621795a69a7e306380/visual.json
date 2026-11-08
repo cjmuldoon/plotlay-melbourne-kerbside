@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "4d621795a69a7e306380",
+  "position": {
+    "x": 40,
+    "y": 110,
+    "z": 1,
+    "height": 900,
+    "width": 1840,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HourOfDay"
+                    }
+                  },
+                  "Property": "hour"
+                }
+              },
+              "queryRef": "HourOfDay.hour",
+              "nativeQueryRef": "hour"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hours"
+                    }
+                  },
+                  "Property": "Occupied"
+                }
+              },
+              "queryRef": "Hours.Occupied",
+              "nativeQueryRef": "Occupied"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DayType"
+                    }
+                  },
+                  "Property": "day_type"
+                }
+              },
+              "queryRef": "DayType.day_type",
+              "nativeQueryRef": "day_type"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bays occupied by hour'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

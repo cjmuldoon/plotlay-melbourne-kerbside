@@ -1,0 +1,145 @@
+table Kerb
+	lineageTag: eecbb625-4c31-c50b-9753-421813c29739
+
+	measure Bays = SUM ( Kerb[bays] )
+		formatString: #,0
+		lineageTag: 5ad809a9-c402-75bb-2497-fb1249cf749f
+
+	/// Weighted by stays
+	measure 'Average stay min' = DIVIDE ( SUMX ( Kerb, Kerb[avg_stay_min] * Kerb[stays] ), SUM ( Kerb[stays] ) )
+		formatString: 0.0
+		lineageTag: 219a53b5-0403-969d-b14b-fd744f87a6b0
+
+	measure 'Cars a bay a day' = DIVIDE ( SUM ( Kerb[stays] ), SUM ( Kerb[covered_bay_days] ) )
+		formatString: 0.0
+		lineageTag: b23311c0-1078-b056-e4d3-1b3cc1cbad57
+
+	/// Weighted by bays
+	measure 'Occupied wd 8 to 20' = DIVIDE ( SUMX ( Kerb, Kerb[occ_wd_8_20] * Kerb[bays] ), SUM ( Kerb[bays] ) ) / 100
+		formatString: 0.0%
+		lineageTag: 2b265b3a-d783-2441-e87a-60b5b664f4b1
+
+	column seg_id
+		dataType: string
+		lineageTag: 18e05fe7-5d36-f416-e870-e299250f0742
+		summarizeBy: none
+		sourceColumn: seg_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 1b648441-595a-66a7-e05d-9dfb466fc14c
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column street
+		dataType: string
+		lineageTag: 4b6530ad-4384-8317-9c02-6d8b8818a3c9
+		summarizeBy: none
+		sourceColumn: street
+
+		annotation SummarizationSetBy = Automatic
+
+	column area
+		dataType: string
+		lineageTag: d3987337-aadc-a5f5-ecb0-0c90fd1e36a5
+		summarizeBy: none
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+	column sign
+		dataType: string
+		lineageTag: fb94a212-fb69-554e-8a40-84e9f8df7677
+		summarizeBy: none
+		sourceColumn: sign
+
+		annotation SummarizationSetBy = Automatic
+
+	column bays
+		dataType: int64
+		formatString: 0
+		lineageTag: edb9f1c1-3d91-6426-56ce-bb216142f438
+		summarizeBy: none
+		sourceColumn: bays
+
+		annotation SummarizationSetBy = Automatic
+
+	column stays
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5cbcf7a7-04e1-3e41-d1fc-9a9d96499677
+		summarizeBy: none
+		sourceColumn: stays
+
+		annotation SummarizationSetBy = Automatic
+
+	column occ_wd_8_20
+		dataType: double
+		formatString: 0.0
+		lineageTag: bdf22cf2-e114-3a44-4dc9-e6f04021ad90
+		summarizeBy: none
+		sourceColumn: occ_wd_8_20
+
+		annotation SummarizationSetBy = Automatic
+
+	column occ_we_8_20
+		dataType: double
+		formatString: 0.0
+		lineageTag: 75ac5ba5-f9b1-773f-a8bd-db86fc8e5c1c
+		summarizeBy: none
+		sourceColumn: occ_we_8_20
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_stay_min
+		dataType: double
+		formatString: 0.0
+		lineageTag: 5a48ff88-dcef-fe57-cc36-48f2ab2b71a2
+		summarizeBy: none
+		sourceColumn: avg_stay_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column stays_per_bay_day
+		dataType: double
+		formatString: 0.0
+		lineageTag: d56158b5-c756-e309-1ee4-5eb354c3f01b
+		summarizeBy: none
+		sourceColumn: stays_per_bay_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column overstay_pct
+		dataType: double
+		formatString: 0.0
+		lineageTag: f62d2e6c-35fb-f924-2143-f2018ab401ee
+		summarizeBy: none
+		sourceColumn: overstay_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column covered_bay_days
+		dataType: int64
+		formatString: #,0
+		lineageTag: bf148c64-2041-310c-e64b-060b37f5ca08
+		summarizeBy: none
+		sourceColumn: covered_bay_days
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Kerb = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(GetFile("kerb/kerb_segments.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"seg_id", "name", "street", "area", "sign", "bays", "stays", "occ_wd_8_20", "occ_we_8_20", "avg_stay_min", "stays_per_bay_day", "overstay_pct", "covered_bay_days"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"seg_id", type text}, {"name", type text}, {"street", type text}, {"area", type text}, {"sign", type text}, {"bays", Int64.Type}, {"stays", Int64.Type}, {"occ_wd_8_20", type number}, {"occ_we_8_20", type number}, {"avg_stay_min", type number}, {"stays_per_bay_day", type number}, {"overstay_pct", type number}, {"covered_bay_days", Int64.Type}}, "en-AU")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,54 @@
+table Hours
+	lineageTag: 6a7e7316-1603-d87b-26a8-eac49dab0a9c
+
+	/// The average of the streets in the filter
+	measure Occupied = AVERAGE ( Hours[occupied] ) / 100
+		formatString: 0.0%
+		lineageTag: f9967970-07e5-77b2-ac2c-d479a1c69048
+
+	column seg_id
+		dataType: string
+		lineageTag: 974c953e-ea5d-6a0e-2c74-34fe92024c51
+		summarizeBy: none
+		sourceColumn: seg_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_type
+		dataType: string
+		lineageTag: a4b0ad67-1acc-f5a6-3cc1-cdf7f5ea503e
+		summarizeBy: none
+		sourceColumn: day_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour
+		dataType: int64
+		formatString: 0
+		lineageTag: b7260297-e2a3-03a0-ade7-a134d7ba95cf
+		summarizeBy: none
+		sourceColumn: hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column occupied
+		dataType: double
+		formatString: 0.0
+		lineageTag: 5a7daa95-c2be-103d-31d5-d569a30d3272
+		summarizeBy: none
+		sourceColumn: occupied
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Hours = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(GetFile("kerb/kerb_hours.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"seg_id", "day_type", "hour", "occupied"}),
+				    Typed = Table.TransformColumnTypes(Kept, {{"seg_id", type text}, {"day_type", type text}, {"hour", Int64.Type}, {"occupied", type number}}, "en-AU")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

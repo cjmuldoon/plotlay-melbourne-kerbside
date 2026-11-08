@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "99d6ca21de5474489477",
+  "position": {
+    "x": 40,
+    "y": 110,
+    "z": 1,
+    "height": 900,
+    "width": 1840,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "shapeMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kerb"
+                    }
+                  },
+                  "Property": "seg_id"
+                }
+              },
+              "queryRef": "Kerb.seg_id",
+              "nativeQueryRef": "seg_id"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hours"
+                    }
+                  },
+                  "Property": "Occupied"
+                }
+              },
+              "queryRef": "Hours.Occupied",
+              "nativeQueryRef": "Occupied"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bays occupied (custom map: data/geometry/kerb.topojson)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
