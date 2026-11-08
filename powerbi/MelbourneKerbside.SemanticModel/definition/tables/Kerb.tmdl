@@ -7,12 +7,22 @@ table Kerb
 
 	/// Weighted by stays
 	measure 'Average stay min' = DIVIDE ( SUMX ( Kerb, Kerb[avg_stay_min] * Kerb[stays] ), SUM ( Kerb[stays] ) )
-		formatString: 0.0
+		formatString: #,0.0
 		lineageTag: 219a53b5-0403-969d-b14b-fd744f87a6b0
 
 	measure 'Cars a bay a day' = DIVIDE ( SUM ( Kerb[stays] ), SUM ( Kerb[covered_bay_days] ) )
 		formatString: 0.0
 		lineageTag: b23311c0-1078-b056-e4d3-1b3cc1cbad57
+
+	/// Average stay on streets with 10 bays or more (blank for smaller streets), as the README ranks them
+	measure 'Stay min 10 bays' = CALCULATE ( [Average stay min], KEEPFILTERS ( Kerb[bays] >= 10 ) )
+		formatString: #,0.0
+		lineageTag: 21895be3-4887-ae13-6cba-b2dd251e60d6
+
+	/// Cars a bay a day on streets with 10 bays or more
+	measure 'Cars a bay a day 10 bays' = CALCULATE ( [Cars a bay a day], KEEPFILTERS ( Kerb[bays] >= 10 ) )
+		formatString: 0.0
+		lineageTag: 7db4e534-2196-0f85-9cc8-b5570ceb3ed7
 
 	/// Weighted by bays
 	measure 'Occupied wd 8 to 20' = DIVIDE ( SUMX ( Kerb, Kerb[occ_wd_8_20] * Kerb[bays] ), SUM ( Kerb[bays] ) ) / 100

@@ -14,19 +14,33 @@
    - By default the data is read from the repo's public copy on GitHub (`DataFolder` is `https://raw.githubusercontent.com/cjmuldoon/plotlay-melbourne-kerbside/main/data/`). If Desktop asks how to connect, choose **Anonymous** and then **Connect**.
    - To read the files from disk instead, go to **Home, Transform data, Edit parameters** and set `DataFolder` to the full path of the repo's `data` folder, **ending with a backslash**. Then select **OK** and **Apply changes**.
    - If Desktop warns about privacy levels, choose **Ignore privacy levels** (all the sources are public open data).
-3. After the refresh, check page 1: the weekday line peaks at about the README's weekday figure in the late morning and dips at 5 pm.
+3. Check the numbers (below).
+
+## Check the numbers after Refresh
+
+After **Refresh**, on **The kerb through a day**:
+
+| Card | Should read |
+|---|---|
+| Bays occupied, weekdays 8 am to 8 pm | 56.3% |
+| Average stay, minutes | 58.8 |
+| Cars a bay a day | 10.8 |
+
+The weekday line peaks at 66.5% at 11 am, dips to 46.0% at 5 pm and rises to 61.6% at 7 pm; the weekend line peaks at 65.5% at 1 pm.
+
+On **Streets by hour** the slicers open on **11** and **Weekday** (one value each); the map then shades each street by how full it was at 11 am on weekdays (the streets average 66.5%). If both slicers are cleared the map still shows 11 am on weekdays. On **How long** (streets with 10 bays or more) the stay chart starts with Airlie St, Clowes St to The Righi (217 minutes) and the cars chart with Collins St, Queen St to Elizabeth St (44.9).
 
 ## The model
 
 - **Kerb**: one row per street (`data/kerb/kerb_segments.csv`), keyed by `seg_id`, with bays, stays and the 2019 summaries.
 - **Hours**: `kerb_hours.csv`, one row per street, day type and hour, with the share of bays occupied.
-- **HourOfDay** and **DayType**: for the slicers.
+- **HourOfDay** and **DayType**: for the slicers. `Occupied` always uses one hour of one day type: the ones picked, or 11 am on a weekday when none is.
 
-## Two map settings Power BI asks for by hand
+## The map
 
-- **Shape Map** (page 1). Select the map. In **Format visual, Visual, Map settings**, set the map type to **Custom map**, choose **Add map type**, and pick `..\data\geometry\kerb.topojson`. Under **View map keys** the seg_id values should match. If the Shape Map isn't in the Visualizations pane, turn it on in **Options, Preview features, Shape map visual**.
-If a map visual comes up empty, drag the fields back:
-- Shape Map: Location `Kerb[seg_id]`, Color saturation `[Occupied]`.
+- **Shape Map** (Streets by hour page). The custom map, `data/geometry/kerb.topojson`, is saved inside the report (`MelbourneKerbside.Report/StaticResources/RegisteredResources/kerb.topojson`, a copy that keeps only the street code), so the streets draw on open, shaded by how full they were in the hour and day picked. If the map shows the United States instead (an older Desktop can ignore a saved map): select it, then **Format visual** (the paintbrush), **Visual**, **Map settings**, **Map type: Custom map**, **Add map type** (or **Browse**), and choose `..\data\geometry\kerb.topojson`. Under **View map keys** the street codes (20001, 21860...) should be matched. If the Shape Map is not in the Visualizations pane at all, turn it on in **File, Options and settings, Options, Preview features, Shape map visual** and restart Desktop.
+
+If the map comes up empty, drag the fields back: Location `Kerb[seg_id]`, Color saturation `[Occupied]`.
 
 Then save with **File, Save**, and if you like **File, Save as** a `.pbix`, which includes the data.
 

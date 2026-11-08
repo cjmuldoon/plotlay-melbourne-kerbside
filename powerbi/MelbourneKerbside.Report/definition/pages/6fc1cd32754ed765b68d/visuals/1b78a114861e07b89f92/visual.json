@@ -3,9 +3,9 @@
   "name": "1b78a114861e07b89f92",
   "position": {
     "x": 40,
-    "y": 24,
+    "y": 18,
     "z": 0,
-    "height": 64,
+    "height": 86,
     "width": 1800,
     "tabOrder": 0
   },
@@ -31,7 +31,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Average stay and cars a bay a day by street.",
+                    "value": "Average stay and cars a bay a day by street, 2019.",
                     "textStyle": {
                       "fontSize": "11pt",
                       "color": "#5b6573"

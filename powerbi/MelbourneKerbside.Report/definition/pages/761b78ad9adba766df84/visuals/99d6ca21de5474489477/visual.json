@@ -27,11 +27,12 @@
                 }
               },
               "queryRef": "Kerb.seg_id",
-              "nativeQueryRef": "seg_id"
+              "nativeQueryRef": "seg_id",
+              "displayName": "Street code"
             }
           ]
         },
-        "Y": {
+        "Value": {
           "projections": [
             {
               "field": {
@@ -45,7 +46,32 @@
                 }
               },
               "queryRef": "Hours.Occupied",
-              "nativeQueryRef": "Occupied"
+              "nativeQueryRef": "Occupied",
+              "displayName": "Bays occupied"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Kerb"
+                        }
+                      },
+                      "Property": "name"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(Kerb.name)",
+              "nativeQueryRef": "name",
+              "displayName": "Street"
             }
           ]
         }
@@ -66,7 +92,70 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bays occupied (custom map: data/geometry/kerb.topojson)'"
+                  "Value": "'Bays occupied in the hour and day picked (darker: fuller)'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "shape": [
+        {
+          "properties": {
+            "datasourceType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'file_upload'"
+                }
+              }
+            },
+            "mapUrl": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "map": {
+              "geoJson": {
+                "type": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'packaged'"
+                    }
+                  }
+                },
+                "name": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'kerb.topojson'"
+                    }
+                  }
+                },
+                "content": {
+                  "expr": {
+                    "ResourcePackageItem": {
+                      "PackageName": "RegisteredResources",
+                      "PackageType": 1,
+                      "ItemName": "kerb.topojson"
+                    }
+                  }
+                }
+              }
+            },
+            "projectionEnum": {
+              "expr": {
+                "Literal": {
+                  "Value": "'mercator'"
                 }
               }
             }
