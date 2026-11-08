@@ -1,9 +1,9 @@
 table Kerb
 	lineageTag: eecbb625-4c31-c50b-9753-421813c29739
 
-	measure Bays = SUM ( Kerb[bays] )
+	measure 'Bay count' = SUM ( Kerb[bays] )
 		formatString: #,0
-		lineageTag: 5ad809a9-c402-75bb-2497-fb1249cf749f
+		lineageTag: 3a191812-4ed4-0edb-5eb8-ba328dc39068
 
 	/// Weighted by stays
 	measure 'Average stay min' = DIVIDE ( SUMX ( Kerb, Kerb[avg_stay_min] * Kerb[stays] ), SUM ( Kerb[stays] ) )

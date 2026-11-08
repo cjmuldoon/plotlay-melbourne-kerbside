@@ -36,13 +36,13 @@ On **Streets by hour** the slicers open on **11** and **Weekday** (one value eac
 
 - **Kerb**: one row per street (`data/kerb/kerb_segments.csv`), keyed by `seg_id`, with bays, stays and the 2019 summaries.
 - **Hours**: `kerb_hours.csv`, one row per street, day type and hour, with the share of bays occupied.
-- **HourOfDay** and **DayType**: for the slicers. `Occupied` always uses one hour of one day type: the ones picked, or 11 am on a weekday when none is.
+- **HourOfDay** and **DayType**: for the slicers. `Share occupied` always uses one hour of one day type: the ones picked, or 11 am on a weekday when none is.
 
 ## The map
 
 - **Shape Map** (Streets by hour page). The custom map, `data/geometry/kerb.topojson`, is saved inside the report (`MelbourneKerbside.Report/StaticResources/RegisteredResources/kerb.topojson`, a copy that keeps only the street code), so the streets draw on open, shaded by how full they were in the hour and day picked. The Shape Map has no base map of its own, so the file also carries the context: the suburbs (ABS, CC BY 4.0) in a pale ground tone, the City of Melbourne boundary as a thin line, and the Yarra, Moonee Ponds Creek and Victoria Harbour showing as the map's pale blue background (their outline from Vicmap Hydro, CC BY 4.0). Loading the plain file from `data/` by hand (below) gives the streets without that context. If the map shows the United States instead (an older Desktop can ignore a saved map): select it, then **Format visual** (the paintbrush), **Visual**, **Map settings**, **Map type: Custom map**, **Add map type** (or **Browse**), and choose `..\data\geometry\kerb.topojson`. Under **View map keys** the street codes (20001, 21860...) should be matched. If the Shape Map is not in the Visualizations pane at all, turn it on in **File, Options and settings, Options, Preview features, Shape map visual** and restart Desktop.
 
-If the map comes up empty, drag the fields back: Location `Kerb[seg_id]`, Color saturation `[Occupied]`.
+If the map comes up empty, drag the fields back: Location `Kerb[seg_id]`, Color saturation `[Share occupied]`.
 
 Then save with **File, Save**, and if you like **File, Save as** a `.pbix`, which includes the data.
 

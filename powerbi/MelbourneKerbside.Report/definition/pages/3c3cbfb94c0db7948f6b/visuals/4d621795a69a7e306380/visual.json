@@ -43,11 +43,11 @@
                       "Entity": "Hours"
                     }
                   },
-                  "Property": "Occupied"
+                  "Property": "Share occupied"
                 }
               },
-              "queryRef": "Hours.Occupied",
-              "nativeQueryRef": "Occupied",
+              "queryRef": "Hours.Share occupied",
+              "nativeQueryRef": "Share occupied",
               "displayName": "Bays occupied"
             }
           ]

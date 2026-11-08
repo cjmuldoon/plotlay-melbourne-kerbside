@@ -11,12 +11,12 @@ table Hours
 		lineageTag: b6273ed5-a112-b620-f8f1-44e334928a57
 
 	/// Share of bays occupied in the hour and day type shown: the average of the streets in the filter
-	measure Occupied =
+	measure 'Share occupied' =
 			VAR h = [Hour shown]
 			VAR d = [Day shown]
 			RETURN CALCULATE ( AVERAGE ( Hours[occupied] ), HourOfDay[hour] = h, DayType[day_type] = d ) / 100
 		formatString: 0.0%
-		lineageTag: f9967970-07e5-77b2-ac2c-d479a1c69048
+		lineageTag: 60ea93a8-778c-a61f-0049-521f18ff0851
 
 	column seg_id
 		dataType: string
