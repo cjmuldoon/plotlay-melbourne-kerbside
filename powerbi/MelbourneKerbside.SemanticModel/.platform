@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "MelbourneKerbside"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "edb28ec8-27dc-41ee-ad4f-2a33506b8f54"
+  }
+}

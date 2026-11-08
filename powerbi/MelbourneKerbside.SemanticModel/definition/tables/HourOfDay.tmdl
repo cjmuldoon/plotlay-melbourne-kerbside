@@ -19,3 +19,4 @@ table HourOfDay
 				    Source
 
 	annotation PBI_ResultType = Table
+
