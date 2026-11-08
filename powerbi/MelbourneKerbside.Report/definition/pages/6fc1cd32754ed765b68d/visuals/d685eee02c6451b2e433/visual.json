@@ -23,11 +23,11 @@
                       "Entity": "Kerb"
                     }
                   },
-                  "Property": "name"
+                  "Property": "name_short"
                 }
               },
-              "queryRef": "Kerb.name",
-              "nativeQueryRef": "name",
+              "queryRef": "Kerb.name_short",
+              "nativeQueryRef": "name_short",
               "displayName": "Street",
               "active": true
             }
@@ -161,7 +161,7 @@
                 "Entity": "Kerb"
               }
             },
-            "Property": "name"
+            "Property": "name_short"
           }
         },
         "type": "TopN",
@@ -189,7 +189,7 @@
                               "Source": "s"
                             }
                           },
-                          "Property": "name"
+                          "Property": "name_short"
                         },
                         "Name": "field"
                       }
@@ -233,7 +233,7 @@
                             "Source": "s"
                           }
                         },
-                        "Property": "name"
+                        "Property": "name_short"
                       }
                     }
                   ],
@@ -249,5 +249,11 @@
         }
       }
     ]
-  }
+  },
+  "annotations": [
+    {
+      "name": "plotlay.categoryLabels",
+      "value": "[\"Agnes St, Wellington S to Palmer\", \"Albert St, Gisborne St to Morrison Pl\", \"Albert St, Morrison Pl to Lansdowne St\", \"Aquitania Way, Caravel to Newquay\", \"Aquitania Way, Docklands to Caravel\", \"Augusta Ave, Wattle to Pearl River\", \"Bourke St, Harbour to Wurundjeri\", \"Brentani Way, Georgiana to Village\", \"Cathedral Pl, Gisborne to Lansdowne\", \"Chetwynd St, Queensberry to Victoria\", \"Clarendon St, George to Wellington\", \"Collins St, Harbour to Navigation\", \"Collins St, Navigation to Merchant\", \"Collins St, Spencer to Batmans Hill\", \"Cumberland St, Bourke to Vic Harbour\", \"Curzon St, Provost to Queensberry\", \"Docklands Dr, Pearl River to Waterfront\", \"Dodds St, Southbank Blvd to Grant St\", \"Doepel Way, Docklands to Newquay\", \"Dryburgh St, Queensberry to Victoria\", \"Elizabeth St, Bourke St to Lt Collins St\", \"Elizabeth St, Flinders St to Flinders La\", \"Elizabeth St, Lonsdale to Lt Bourke\", \"Elizabeth St, Lt Lonsdale to Lonsdale\", \"Elizabeth St, Queensberry to Victoria\", \"Exhibition St, Bourke St to Lt Collins St\", \"Exhibition St, Flinders La to Flinders St\", \"Exhibition St, La Trobe to Lt Lonsdale\", \"Exhibition St, Lonsdale to Lt Bourke\", \"Exhibition St, Lt Bourke St to Bourke St\", \"Exhibition St, Lt Collins St to Collins St\", \"Exhibition St, Lt Lonsdale to Lonsdale\", \"Fishplate La, Batmans Hill to Village\", \"Flinders La, Elizabeth St to Swanston St\", \"Gisborne St, Albert St to Cathedral Pl\", \"Harbour Esp, Collins St to Bourke St\", \"Harbour Esp, Collins St to Mccrae St\", \"Harbour Esp, La Trobe St to Bourke St\", \"Howard St, Queensberry to Victoria\", \"Jolimont Rd, Wellington S to Jolimont\", \"Jolimont St, Charles to Jolimont\", \"Jolimont St, Jolimont to Jolimont\", \"Kavanagh St, Southbank to Sturt\", \"King St, La Trobe St to Lt Lonsdale St\", \"King St, Lt Lonsdale St to Lonsdale St\", \"Lansdowne St, Albert St to Cathedral Pl\", \"Lansdowne St, Cathedral to St Andrews\", \"Lansdowne St, St Andrews to…\", \"Leven Ave, Pearl River Rd to Wattle Rd\", \"Leveson St, Queensberry to Victoria\", \"Lt Bourke St, Exhibition St to Spring St\", \"Lt Bourke St, Queen St to Elizabeth St\", \"Lt Collins St, Elizabeth to Swanston\", \"Lt Collins St, Exhibition St to Spring St\", \"Lt Collins St, Queen St to Elizabeth St\", \"Lt Collins St, Russell St to Swanston St\", \"Lt Docklands Dr, Waterfront to…\", \"Lt Lonsdale St, Elizabeth to Swanston\", \"Lt Lonsdale St, Exhibition to Spring\", \"Lt Lonsdale St, Queen St to Elizabeth St\", \"Lt Lonsdale St, Russell to Exhibition\", \"Lt Lonsdale St, Swanston to Russell\", \"Lt Lonsdale St, William St to Queen St\", \"Merchant St, Bourke to Vic Harbour\", \"Navigation Dr, Collins St to Bourke St\", \"Navigation Dr, Harbour to Collins\", \"Parliament Pl, Gisborne to St Andrews\", \"Queen St, La Trobe St to Lt Lonsdale St\", \"Queen St, Lonsdale St to Lt Bourke St\", \"Queen St, Lt Lonsdale St to Lonsdale St\", \"Queensberry St, Abbotsford to Curzon\", \"Queensberry St, Chetwynd to Howard\", \"Queensberry St, Leveson to Chetwynd\", \"Queensberry St, Lothian to Abbotsford\", \"Queensberry St, O'Connell to Elizabeth\", \"Rakaia Way, Docklands to Caravel\", \"Russell St, Lonsdale St to Lt Bourke St\", \"Saint Mangos La, Docklands to Caravel\", \"Southbank Blvd, Moore to Kavanagh\", \"Southbank Blvd, Riverside Quay to City\", \"Spencer St, Bourke St to Lt Collins St\", \"Spencer St, Lonsdale St to Lt Bourke St\", \"Spencer St, Lt Bourke St to Bourke St\", \"Spencer St, Lt Lonsdale to Lonsdale\", \"Spring St, Lonsdale St to Lt Bourke St\", \"Spring St, Lt Lonsdale St to Lonsdale St\", \"Spring St, Victoria to Lt Lonsdale\", \"St Andrews Pl, Macarthur to…\", \"Sturt St, Southbank Blvd to Grant St\", \"Swanston St, Elgin to College Crescent\", \"Vale St, Wellington S to Vale South\", \"Vegemite Way, Salmon to Douglas\", \"Walsh St, Clowes St to Alexandra Ave\", \"Waterview Walk, Bourke to Batmans…\", \"Wellington Pde S, Agnes to Jolimont\", \"Wellington Pde S, Jolimont to…\", \"Wellington Pde, Jolimont to Clarendon\", \"Wellington Pde, Spring to Lansdowne\", \"William St, La Trobe to Lt Lonsdale\", \"William St, Lonsdale St to Lt Bourke St\"]"
+    }
+  ]
 }
