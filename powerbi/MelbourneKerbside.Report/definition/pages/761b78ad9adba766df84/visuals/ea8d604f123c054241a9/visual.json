@@ -22,7 +22,8 @@
                     "value": "On-street Car Parking Sensor Data 2019 and road corridors: City of Melbourne Open Data, CC BY 4.0. Kerb keyed in Plotlay (getplotlay.com). Map context: ABS ASGS 2021 and Vicmap Hydro (CC BY 4.0). How full is read at half past each hour; a stay is 2 minutes to 24 hours; residents with permits are exempt from limits.",
                     "textStyle": {
                       "fontSize": "9pt",
-                      "color": "#5b6573"
+                      "color": "#5b6573",
+                      "fontFamily": "Segoe UI"
                     }
                   }
                 ]
