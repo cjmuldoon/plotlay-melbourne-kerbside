@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "4d621795a69a7e306380",
   "position": {
     "x": 40,
@@ -28,7 +28,8 @@
               },
               "queryRef": "HourOfDay.hour",
               "nativeQueryRef": "hour",
-              "displayName": "Hour"
+              "displayName": "Hour",
+              "active": true
             }
           ]
         },
@@ -86,8 +87,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "drillFilterOtherVisuals": true,
