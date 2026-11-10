@@ -37,14 +37,14 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "kerb.topojson",
-          "path": "kerb.topojson",
-          "type": "ShapeMap"
-        },
-        {
           "name": "Plotlay_drafting_film.json",
           "path": "Plotlay_drafting_film.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "kerb.topojson",
+          "path": "kerb.topojson",
+          "type": "ShapeMap"
         }
       ]
     }

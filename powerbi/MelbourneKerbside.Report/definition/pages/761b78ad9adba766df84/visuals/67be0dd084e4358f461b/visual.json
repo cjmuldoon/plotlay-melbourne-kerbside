@@ -1,0 +1,271 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "67be0dd084e4358f461b",
+  "position": {
+    "x": 1180,
+    "y": 128,
+    "z": 1,
+    "height": 882,
+    "width": 700,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Kerb"
+                    }
+                  },
+                  "Property": "name_short"
+                }
+              },
+              "queryRef": "Kerb.name_short",
+              "nativeQueryRef": "name_short",
+              "displayName": "Street",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hours"
+                    }
+                  },
+                  "Property": "Share occupied"
+                }
+              },
+              "queryRef": "Hours.Share occupied",
+              "nativeQueryRef": "Share occupied",
+              "displayName": "Bays occupied"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Hours"
+                  }
+                },
+                "Property": "Share occupied"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'The 15 fullest streets in the hour and day picked'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Categorical'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c34c57a147f468c78426",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Kerb"
+              }
+            },
+            "Property": "name_short"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "s",
+                        "Entity": "Kerb",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "m",
+                        "Entity": "Hours",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "s"
+                            }
+                          },
+                          "Property": "name_short"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "m"
+                              }
+                            },
+                            "Property": "Share occupied"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 15
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "s",
+              "Entity": "Kerb",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "s"
+                          }
+                        },
+                        "Property": "name_short"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "plotlay.categoryLabels",
+      "value": "[\"A'Beckett St, Queen-Elizabeth\", \"Acland St, Anderson to Walsh\", \"Agnes St, Wellington S…\", \"Airlie St, Clowes to The Righi\", \"Albert St, Eades to Clarendon\", \"Albert St, Gisborne-Morrison\", \"Albert St, Lansdowne-Eades\", \"Albert St, Morrison…\", \"Albert St, Nicholson-Gisborne\", \"Albert St, Powlett to Simpson\", \"Albert St, Simpson to Hoddle\", \"Aquitania Way, Caravel…\", \"Aquitania Way, Docklands…\", \"Augusta Ave, Wattle-Pearl…\", \"Batman St, King to Spencer\", \"Bond St, Flinders to Flinders\", \"Bourke St, Exhibition-Spring\", \"Bourke St, Harbour…\", \"Bourke St, King to William\", \"Bourke St, Queen to Elizabeth\", \"Bourke St, Russell-Exhibition\", \"Bourke St, Spencer to King\", \"Bourke St, William to Queen\", \"Brentani Way, Georgiana…\", \"Capel St, Queensberry…\", \"Capel St, Victoria to William\", \"Cathedral Pl, Gisborne…\", \"Charles St, Jolimont-Palmer\", \"Chetwynd St, Queensberry…\", \"Chetwynd St, Victoria-Stanley\", \"Church St, Bourke-Lt Collins\", \"Clarendon St, Albert to Grey\", \"Clarendon St, George…\", \"Clarendon St, Gipps-Hotham\", \"Clarendon St, Grey to Gipps\", \"Clarendon St, Hotham…\", \"Clarendon St, Victoria-Albert\", \"Clowes St, Anderson to Walsh\", \"Clowes St, Walsh to Airlie\", \"Collins St, Exhibition-Spring\", \"Collins St, Harbour…\", \"Collins St, King to William\", \"Collins St, Navigation…\", \"Collins St, Queen to Elizabeth\", \"Collins St, Russell-Exhibition\", \"Collins St, Spencer-Batmans…\", \"Coventry St, Dodds to Wells\", \"Coventry St, Sturt to Dodds\", \"Coventry St, Wells to St Kilda\", \"Cumberland St, Bourke-Vic…\", \"Curzon St, Elm to Victoria\", \"Curzon St, Provost…\", \"Curzon St, Queensberry-Elm\", \"Docklands Dr, Pearl River…\", \"Dodds St, Miles to Coventry\", \"Dodds St, Southbank-Grant\", \"Doepel Way, Docklands…\", \"Dorcas St, Kings to Dodds\", \"Dorcas St, Wells to St Kilda\", \"Dryburgh St, Queensberry…\", \"Dudley St, Milton to William\", \"Eades St, Albert to Victoria\", \"Elizabeth St, Bourke-Lt Collins\", \"Elizabeth St, Collins-Flinders\", \"Elizabeth St, Flinders-Flinders\", \"Elizabeth St, Franklin…\", \"Elizabeth St, Lonsdale-Lt…\", \"Elizabeth St, Lt Lonsdale…\", \"Elizabeth St, Queensberry…\", \"Elizabeth St, Therry-Franklin\", \"Errol St, Queensberry-Victoria\", \"Exhibition St, Bourke-Lt…\", \"Exhibition St, Collins-Flinders\", \"Exhibition St, Flinders…\", \"Exhibition St, La Trobe-Lt…\", \"Exhibition St, Lonsdale-Lt…\", \"Exhibition St, Lt Bourke…\", \"Exhibition St, Lt Collins…\", \"Exhibition St, Lt Lonsdale…\", \"Faraday St, Swanston…\", \"Fishplate La, Batmans Hill…\", \"Flinders La, Elizabeth…\", \"Flinders La, Exhibition-Spring\", \"Flinders La, King to William\", \"Flinders St, Queen-Elizabeth\", \"Flinders St, Russell-Exhibition\", \"Flinders St, Spencer to King\", \"Francis St, Spencer to King\", \"Franklin St, Elizabeth…\", \"Franklin St, Queen-Elizabeth\", \"Franklin St, William to Queen\", \"Gisborne St, Albert-Cathedral\", \"Grant St, Wells to St Kilda\", \"Harbour Esp, Collins-Bourke\", \"Harbour Esp, Collins-Mccrae\", \"Harbour Esp, La Trobe…\", \"Howard St, Queensberry…\", \"Howard St, William-Rosslyn\", \"Import La, Collins to Bourke\", \"Jeffcott St, King to Spencer\", \"Jolimont Rd, Wellington S…\", \"Jolimont St, Agnes to Charles\", \"Jolimont St, Agnes-Jolimont\", \"Jolimont St, Charles-Jolimont\", \"Jolimont St, Jolimont…\", \"Karlsruhe La, Collins to Keera\", \"Kavanagh St, Balston-Power\", \"Kavanagh St, Southbank…\", \"King St, Batman to Jeffcott\", \"King St, Bourke to Lt Collins\", \"King St, Collins to Flinders\", \"King St, Flinders to Flinders\", \"King St, Jeffcott to La Trobe\", \"King St, La Trobe-Lt Lonsdale\", \"King St, Lonsdale-Lt Bourke\", \"King St, Lt Bourke to Bourke\", \"King St, Lt Collins to Collins\", \"King St, Lt Lonsdale-Lonsdale\", \"King St, Victoria to Roden\", \"La Trobe St, Elizabeth…\", \"La Trobe St, King to William\", \"La Trobe St, Queen-Elizabeth\", \"La Trobe St, Russell…\", \"La Trobe St, Spencer to King\", \"La Trobe St, Swanston-Russell\", \"Lansdowne St, Albert…\", \"Lansdowne St, Cathedral-St…\", \"Lansdowne St, St Andrews…\", \"Leven Ave, Pearl River-Wattle\", \"Leveson St, Queensberry…\", \"Lonsdale St, Exhibition…\", \"Lonsdale St, King to William\", \"Lonsdale St, Queen-Elizabeth\", \"Lonsdale St, Russell…\", \"Lonsdale St, Swanston…\", \"Lonsdale St, William-Queen\", \"Lt Bourke St, Exhibition…\", \"Lt Bourke St, King to William\", \"Lt Bourke St, Queen-Elizabeth\", \"Lt Bourke St, Spencer to King\", \"Lt Bourke St, William-Queen\", \"Lt Collins St, Elizabeth…\", \"Lt Collins St, Exhibition…\", \"Lt Collins St, King to William\", \"Lt Collins St, Queen-Elizabeth\", \"Lt Collins St, Russell…\", \"Lt Collins St, Spencer to King\", \"Lt Collins St, William-Queen\", \"Lt Docklands Dr…\", \"Lt Lonsdale St, Elizabeth…\", \"Lt Lonsdale St, Exhibition…\", \"Lt Lonsdale St, King-William\", \"Lt Lonsdale St, Queen…\", \"Lt Lonsdale St, Russell…\", \"Lt Lonsdale St, Spencer-King\", \"Lt Lonsdale St, Swanston…\", \"Lt Lonsdale St, William…\", \"Mackenzie St, Russell-Victoria\", \"Market St, Flinders to Flinders\", \"Merchant St, Bourke-Vic…\", \"Merchant St, Collins-Bourke\", \"Navigation Dr, Collins-Bourke\", \"Navigation Dr, Harbour…\", \"Nicholson St, Albert to Spring\", \"O'Connell St, Peel…\", \"Palmer St, Agnes to Charles\", \"Parliament Pl, Gisborne-St…\", \"Pelham St, Lygon-Drummond\", \"Princess St, Peel to Cobden\", \"Queen St, A'Beckett-La Trobe\", \"Queen St, Bourke-Lt Collins\", \"Queen St, Collins to Flinders\", \"Queen St, Flinders to Flinders\", \"Queen St, Franklin-A'Beckett\", \"Queen St, La Trobe-Lt…\", \"Queen St, Lonsdale-Lt Bourke\", \"Queen St, Lt Bourke-Bourke\", \"Queen St, Lt Collins to Collins\", \"Queen St, Lt Lonsdale…\", \"Queen St, Therry to Franklin\", \"Queensberry St, Chetwynd…\", \"Queensberry St, Errol…\", \"Queensberry St, Howard…\", \"Queensberry St, Leveson…\", \"Queensberry St, Lothian…\", \"Queensberry St, O'Connell…\", \"Queensberry St…\", \"Rakaia Way, Docklands…\", \"Rosslyn St, Howard-William\", \"Russell St, Bourke-Lt Collins\", \"Russell St, Collins to Flinders\", \"Russell St, Flinders to Flinders\", \"Russell St, Lonsdale-Lt…\", \"Russell St, Lt Bourke-Bourke\", \"Russell St, Lt Collins to Collins\", \"Saint Mangos La…\", \"Seafarer La, Bourke to Collins\", \"Simpson St, Albert to Victoria\", \"Southbank Blvd, Moore…\", \"Southbank Blvd, Riverside…\", \"Spencer St, Batman-Jeffcott\", \"Spencer St, Bourke-Lt Collins\", \"Spencer St, Collins to Flinders\", \"Spencer St, Jeffcott-La Trobe\", \"Spencer St, Lonsdale-Lt…\", \"Spencer St, Lt Bourke-Bourke\", \"Spencer St, Lt Lonsdale…\", \"Spring St, Collins to Flinders\", \"Spring St, Flinders to Flinders\", \"Spring St, Lonsdale-Lt Bourke\", \"Spring St, Lt Bourke-Bourke\", \"Spring St, Lt Collins to Collins\", \"Spring St, Lt Lonsdale…\", \"Spring St, Victoria-Lt…\", \"St Andrews Pl, Macarthur…\", \"St Kilda Rd, Dorcas-Coventry\", \"Stanley St, Spencer to King\", \"Sturt St, Southbank to Grant\", \"Swanston St, Elgin-College…\", \"Therry St, Queen to Elizabeth\", \"Vale St South, Vale to Punt\", \"Vale St, Wellington S-Vale S\", \"Vegemite Way, Salmon…\", \"Vic Pde, Simpson-Hoddle\", \"Vic Pde, Simpson-Powlett\", \"Victoria St, Errol to Leveson\", \"Victoria St, Howard to Capel\", \"Victoria St, Leveson…\", \"Victoria St, O'Connell…\", \"Walsh St, Acland to Clowes\", \"Walsh St, Clowes-Alexandra\", \"Walsh St, Domain to Acland\", \"Walsh St, Milton to William\", \"Waterview Walk, Bourke…\", \"Wellington Pde S, Agnes…\", \"Wellington Pde S, Jolimont…\", \"Wellington Pde, Jolimont…\", \"Wellington Pde, Spring…\", \"Wells St, Coventry to Dorcas\", \"William St, A'Beckett-La…\", \"William St, Collins to Flinders\", \"William St, Flinders-Flinders\", \"William St, Franklin-A'Beckett\", \"William St, La Trobe-Lt…\", \"William St, Lonsdale-Lt…\", \"William St, Lt Bourke-Bourke\", \"William St, Lt Collins-Collins\", \"William St, Walsh to Dudley\", \"Wills St, A'Beckett to La Trobe\"]"
+    }
+  ]
+}
